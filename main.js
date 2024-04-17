@@ -1,3 +1,9 @@
+
+createDatas();
+getPrice().then(res =>{console.log(res);})
+
+
+
 async function getData(){
 	
 	try{
@@ -24,7 +30,7 @@ async function createDatas(){
 			const productContainer = document.querySelector('#products-container');
 
 			datas.products.forEach(element => {				
-				console.log(element);
+				//console.log(element);
 				
 				const div = document.createElement('div');
 				const brand = document.createElement('h3');
@@ -68,20 +74,31 @@ async function createDatas(){
     }
 }
 
-createDatas();
 
 
 async function  getPrice(){
 	await createDatas();
 	
-	var prices = document.getElementsByClassName("price")[0].innerHTML
+	var prices = document.getElementsByClassName("price");
 	
-	
-	var removeElements = prices.replace(/[^\d,.-]/g, "")
+	const productsPrice = [];
+
+	for (let index = 0; index < prices.length; index++) {
+		var price = prices[index].innerHTML;
 		
-	var convert = parseInt(removeElements)
+		productsPrice.push(price)
+	}
 	
-	return console.log(convert);
+	var elements = []
+	productsPrice.forEach(element => {
+		let removeElements = element.replace(/[^\d,.-]/g, "")
+		var convert = parseInt(removeElements)
+		elements.push(convert)
+	});
+
+	return elements;
 }
 
-getPrice()
+
+
+
