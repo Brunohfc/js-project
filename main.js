@@ -1,4 +1,3 @@
-
 async function getData(){
 	
 	try{
@@ -70,3 +69,19 @@ async function createDatas(){
 }
 
 createDatas();
+
+
+async function  getPrice(){
+	await createDatas();
+	
+	var prices = document.getElementsByClassName("price")[0].innerHTML
+	
+	
+	var removeElements = prices.replace(/[^\d,.-]/g, "")
+		
+	var convert = parseInt(removeElements)
+	
+	return console.log(convert);
+}
+
+getPrice()
